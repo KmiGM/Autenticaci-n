@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Registro e Inicio de Sesión</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Registro</h1>
+        <form id="register-form">
+            <input type="text" id="register-username" placeholder="Nombre de usuario" required>
+            <input type="password" id="register-password" placeholder="Contraseña" required>
+            <button type="submit">Registrar</button>
+        </form>
+
+        <h1>Inicio de Sesión</h1>
+        <form id="login-form">
+            <input type="text" id="login-username" placeholder="Nombre de usuario" required>
+            <input type="password" id="login-password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (response.ok) {
+                alert('Usuario registrado con éxito');
+            } else {
+                alert('Error al registrar el usuario');
+            }
+        });
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (response.ok) {
+                alert('Inicio de sesión exitoso');
+            } else {
+                alert('Error al iniciar sesión');
+            }
+        });
+    </script>
+</body>
+</html>

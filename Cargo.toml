@@ -1,0 +1,11 @@
+[package]
+name = "Segunda3"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rocket = { version = "0.5.1", features = ["json"] }
+diesel = { version = "1.4.8", features = ["sqlite"] }
+argon2 = "0.3.0"
+serde = { version = "1.0", features = ["derive"] }
+rocket_db_pools = "0.1.0"       
